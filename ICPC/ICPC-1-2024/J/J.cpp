@@ -1,44 +1,71 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
+vector<vector<vector<int>>> dp(250, vector<vector<int>>(500, vector<int>(500, -1)));
+
 int dpPar(string word, int k, int x, int y){ //a,b k =2, x=0, y=1
+	int k2=k/2;
+	if (dp[k2][x][y] != -1){
+		return dp[k2][x][y];
+	}
 	if(x>=y || k<1){
+		dp[k2][x][y] = k;
 		return k;
 	}
 
-	if (word[x] == word[y]){
-		return dpPar(word, k-2, x+1, y-1);
+	int x1=x+1, y1=y-1;
+
+	if (dp[k2][x1][y] == -1){
+		dp[k2][x1][y] = dpPar(word, k, x1, y);
+	}
+	if (dp[k2][x][y1] == -1){
+		dp[k2][x][y1] = dpPar(word, k, x, y1);
 	}
 
-	int num1, num2, num3, num4;
-	num1 = dpPar(word, k-2, x+1, y-1) + 1;
+	dp[k2][x][y] = dpPar(word, k-2, x1, y1);
 
-	num2 = dpPar(word, k, x+1, y);
-	num3 = dpPar(word, k, x, y-1);
-	num4 = min(num1, min(num2, num3));
-	return num4;	
+	if (word[x] == word[y]){
+		return dp[k2][x][y];
+	}
+	dp[k2][x][y]++;
+
+	dp[k2][x][y] = min(dp[k2][x][y], min(dp[k2][x1][y], dp[k2][x][y1]));
+	return dp[k2][x][y];	
 }
 
 int dpImpar(string word, int k, int x, int y){ //a,b k =2, x=0, y=1
+	int k2=k/2;
+	if (dp[k2][x][y] != -1){
+		return dp[k2][x][y];
+	}
 	if(x>=(y-1) || k<1){
+		dp[k2][x][y] = k;
 		return k;
 	}
 
-	if (word[x] == word[y]){
-		return dpImpar(word, k-2, x+1, y-1);
+	int x1=x+1, y1=y-1;
+
+	if (dp[k2][x1][y] == -1){
+		dp[k2][x1][y] = dpImpar(word, k, x1, y);
+	}
+	if (dp[k2][x][y1] == -1){
+		dp[k2][x][y1] = dpImpar(word, k, x, y1);
 	}
 
-	int num1, num2, num3, num4;
-	num1 = dpImpar(word, k-2, x+1, y-1) + 1;
+	dp[k2][x][y] = dpImpar(word, k-2, x1, y1);
 
-	num2 = dpImpar(word, k, x+1, y);
-	num3 = dpImpar(word, k, x, y-1);
-	num4 = min(num1, min(num2, num3));
-	return num4;	
+	if (word[x] == word[y]){
+		return dp[k2][x][y];
+	}
+	dp[k2][x][y]++;
+
+	dp[k2][x][y] = min(dp[k2][x][y], min(dp[k2][x1][y], dp[k2][x][y1]));
+	return dp[k2][x][y];	
 }
 
 int main(){
-	//cin.tie(0)->sync_with_stdio(0);
+	cin.tie(0)->sync_with_stdio(0);
 
 	int length=0, k=0;
 	cin>>length>>k;

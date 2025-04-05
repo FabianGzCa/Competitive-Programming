@@ -10,7 +10,12 @@ int main(){
 	while (tt--){
 		cin>>a>>b>>c>>d;
 		if (c > d){
-			x = (c / (d+1)) * a * d + ((c % (d+1)) * b);
+			x = (c / (d+1)) * a * d;
+			if (a > b){
+				x+= ((c%(d+1)) * b);
+			}else{
+				x+= ((c%(d+1)) * a);
+			}
 		}else{
 			x = a * c;
 		}

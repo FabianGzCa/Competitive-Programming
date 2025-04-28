@@ -34,7 +34,7 @@ void solve(){
 
 
 	for(int i=0; i<n; i++){
-		int cantidadDoses=0;
+		int cantidadDoses=0, cantidadNegativos=cantGanadores, nohubo=1;
 		for(int j=0; j<n; j++){
 			if(i==j){
 				if(desiciones[i]=='2'){
@@ -48,11 +48,25 @@ void solve(){
 				}else if(cg<cantGanadores-1 && cantidadDoses==cg+1){
 					cout<<"+";
 				}else if(cg<cantGanadores-1){
-					cout<<"-";
+					if((j+1 ==i || j+1 == n) && nohubo){
+						nohubo=0;
+						cout<<"-";
+					}else if(desiciones[j]=='1' || !nohubo){
+						cout<<"=";
+					}else{
+						nohubo=0;
+						cout<<"-";
+					}
 				}else if(cg==cantGanadores-1){
 					if(j==primerGanador){
 						cout<<"+";
+					}else if((j+1 ==i || j+1 == n) && nohubo){
+						cout<<"-";
+						nohubo=0;
+					}else if(desiciones[j]=='1' || !nohubo){
+						cout<<"=";
 					}else{
+						nohubo=0;
 						cout<<"-";
 					}
 				}

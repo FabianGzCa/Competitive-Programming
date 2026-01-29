@@ -2,15 +2,17 @@
 using namespace std;
 
 int main(){
-    int a, b, c; cin>>a>>b>>c;
-    int cincos=0, sietes=0;
-    if(a==5)cincos++;
-    if(a==7)sietes++;
-    if(b==5)cincos++;
-    if(b==7)sietes++;
-    if(c==5)cincos++;
-    if(c==7)sietes++;
-    if(cincos==2 && sietes==1)cout<<"YES\n";
-    else cout<<"NO\n";
+    int a,d=0,e=0;
+    for(int i=0; i< 3; i++){
+        cin>>a;
+        if(a==5) d++;
+        if(a==7) e++;
+    }
+
+    if(d==2 && e==1){
+        cout<<"YES\n";
+    }else{
+        cout<<"NO\n";
+    }
     return 0;
 }

@@ -1,22 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define REP(i,a,n) for(int i=a; i<n; i++)
-
 int main(){
-    int n; cin>>n;
+    int n, n2; cin>>n; n2=n;
+    int total =0, x;
     vector<int> nums(n);
-    REP(i,0,n)cin>>nums[i];
-    int minv = *min_element(nums.begin(), nums.end());
-    int maxv = *max_element(nums.begin(), nums.end());
-    int res = INT_MAX;
-    for(int i=minv; i<=maxv; i++){
-        int actRes=0;
-        REP(j,0,n){
-            actRes += pow((nums[j]-i), 2);
-        }
-        res = min(res, actRes);
+    while(n2--){
+        cin>>nums[n2];
+        total+=nums[n2];
     }
-    cout<<res<<"\n";
+    float avg = float(total) / n;
+    avg = round(avg);
+
+    total = 0;
+    for(int num : nums){
+        total+=pow(int(avg)-num, 2);
+    }
+    cout<<total<<"\n";
 
     return 0;
-}
+} 

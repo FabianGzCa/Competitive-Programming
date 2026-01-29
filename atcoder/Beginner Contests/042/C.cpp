@@ -1,26 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool check(int num, vector<char>& bloqueados){
-    string theNum = to_string(num);
-    for(int i=0; i<theNum.length(); i++){
-        for(int j=0; j<bloqueados.size(); j++){
-            if(theNum[i] == bloqueados[j]){
-                return false;
+int main(){
+    int N, K; cin>>N>>K;
+    vector<char> digits(K);
+    while(K--) cin>>digits[K];
+
+    while(1){
+        bool broken = 0;
+        string num = to_string(N);
+        for(char letter : num){
+            for(char digit : digits){
+                if(letter == digit && !broken){
+                    N+=1;
+                    broken=1;
+                }
             }
         }
+        if(broken) continue;
+        break;
     }
-    return true;
-        
-    
-}
-
-
-int main(){
-    int n, k; cin>>n>>k;
-    vector<char> bloqueados(k);
-    for(int i=0; i<k; i++) cin>>bloqueados[i];
-    while(!check(n, bloqueados)) n++;
-    cout<<n<<"\n";
+    cout<<N<<"\n";
     return 0;
 }

@@ -1,20 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 int main(){
-    vector<char> res(10);
-    string comtext; cin>>comtext;
-    int actual=0;
-    for(int i=0; i<comtext.length(); i++){
-        char cu = comtext[i];
-        if(cu=='0' || cu=='1'){
-            res[actual] = cu;
-            actual++;
+    string word; cin>>word;
+    string out="";
+    
+    for(char letter : word){
+        if(letter == '0'){
+            out+='0';
+        }else if (letter == '1'){
+            out+='1';
         }else{
-            if(actual > 0) actual--;
+            if(out.size()!=0){
+                out.erase(out.size()-1);
+            }
         }
     }
-    for(int i=0; i<actual; i++)cout<<res[i];
-    cout<<endl;
+    cout<<out<<"\n";
     return 0;
 }

@@ -2,13 +2,16 @@
 using namespace std;
 
 int main(){
-    int n,l;
+    int n, l;
     cin>>n>>l;
-    vector<string> cads(n);
-    for(int i=0; i<n; i++) cin>>cads[i];
-
-    sort(cads.begin(), cads.end());
-    for(int i=0; i<n; i++) cout<<cads[i];
+    vector<string> text(n);
+    while(n--){
+        cin>>text[n];
+    }
+    sort(text.begin(), text.end());
+    for(string word : text){
+        cout<<word;
+    }
     cout<<"\n";
     return 0;
 }

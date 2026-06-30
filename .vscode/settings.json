@@ -1,0 +1,19 @@
+{
+  "editor.inlineSuggest.enabled": false,
+
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.tabCompletion": "off",
+  "editor.wordBasedSuggestions": "off",
+  "editor.suggest.showWords": false,
+
+  "C_Cpp.autocomplete": "Disabled",
+  "C_Cpp.suggestSnippets": false,
+  "C_Cpp.intelliSenseEngine": "Disabled"
+}
